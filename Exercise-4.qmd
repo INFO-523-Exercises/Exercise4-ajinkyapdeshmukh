@@ -51,7 +51,9 @@ theme_set(theme_bw() + theme(legend.position = "top"))
 
 ## **Multiple Linear Regression**
 
--   For multiple linear regression (MLR) model we use Python scikit -learn package.
+-   For multiple linear regression (MLR) model we use Python scikit -learn package. Given a training set $$X, y$$ MLR is designed to learn the regression function $$f(X,w) = X^Tw + w_0$$ by minimizing the following loss function given a training set $$(X_i,y_i)_{i=1}^N$$:
+
+-   $$L(y,f(X,w)) = \sum_{i=1}^N||y_i - X_iw - w_0||^2$$,
 
 -   Given the input dataset, the following steps are performed:
 
@@ -145,7 +147,7 @@ cat('R-squared =', sprintf("%.4f", r2_value$.estimate), "\n")
     ```
 
     ```{r}
-    ### Step 4: Postprocessing
+    ### Step 5: Postprocessing
 
     # Plot outputs
     ggplot() +
@@ -269,7 +271,7 @@ y_pred_train5 <- predict(regr5_fit, new_data = new_train_data5)
 y_pred_test5 <- predict(regr5_fit, new_data = new_test_data5)
 ```
 
-For postprocessing, we compute both the training and test errors of the models.
+For postprocessing, we compute both the training and test errors of the models. We can also show the resulting model and the sum of the absolute weights of the regression coefficients, i.e., $$\sum_{j=0}^d|w_j|,$$ where $$d$$ is the number of predictor attributes.
 
 ```{r}
 # Extract coefficients and intercepts
@@ -324,7 +326,7 @@ The results above show that the first model, which fits y against X only, has th
 
 Ridge regression is a variant of MLR designed to fit a linear model to the dataset by minimizing the following regularized least-square loss function $$L_{ridge}(y,f(X,w)) = \sum_{i=1}^N||y_i - X_iw - w_0||^2 + \alpha[||w||^2 + w_0^2]$$,
 
-where $$\alpha$$ is the hyperparameter for ridge regression. Note that the ridge regression model reduces to MLR when �=0. By increasing the value of �, we can control the complexity of the model as will be shown in the example below.
+where $$\alpha$$ is the hyperparameter for ridge regression. Note that the ridge regression model reduces to MLR when $$\alpha = 0$$. By increasing the value of $$\alpha$$, we can control the complexity of the model as will be shown in the example below.
 
 In the example shown below, we fit a ridge regression model to the previously created training set with correlated attributes. We compare the results of the ridge regression model against those obtained using MLR.
 

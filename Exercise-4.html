@@ -156,7 +156,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="multiple-linear-regression" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-linear-regression"><strong>Multiple Linear Regression</strong></h2>
 <ul>
-<li><p>For multiple linear regression (MLR) model we use Python scikit -learn package.</p></li>
+<li><p>For multiple linear regression (MLR) model we use Python scikit -learn package. Given a training set <span class="math display">\[X, y\]</span> MLR is designed to learn the regression function <span class="math display">\[f(X,w) = X^Tw + w_0\]</span> by minimizing the following loss function given a training set <span class="math display">\[(X_i,y_i)_{i=1}^N\]</span>:</p></li>
+<li><p><span class="math display">\[L(y,f(X,w)) = \sum_{i=1}^N||y_i - X_iw - w_0||^2\]</span>,</p></li>
 <li><p>Given the input dataset, the following steps are performed:</p></li>
 </ul>
 <ol type="1">
@@ -254,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 4: Postprocessing</span></span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Step 5: Postprocessing</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot outputs</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -375,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>y_pred_train5 <span class="ot">&lt;-</span> <span class="fu">predict</span>(regr5_fit, <span class="at">new_data =</span> new_train_data5)</span>
 <span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>y_pred_test5 <span class="ot">&lt;-</span> <span class="fu">predict</span>(regr5_fit, <span class="at">new_data =</span> new_test_data5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>For postprocessing, we compute both the training and test errors of the models.</p>
+<p>For postprocessing, we compute both the training and test errors of the models. We can also show the resulting model and the sum of the absolute weights of the regression coefficients, i.e., <span class="math display">\[\sum_{j=0}^d|w_j|,\]</span> where <span class="math display">\[d\]</span> is the number of predictor attributes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract coefficients and intercepts</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>get_coef <span class="ot">&lt;-</span> <span class="cf">function</span>(model) {</span>
@@ -439,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ridge-regression" class="level3">
 <h3 class="anchored" data-anchor-id="ridge-regression">Ridge Regression</h3>
 <p>Ridge regression is a variant of MLR designed to fit a linear model to the dataset by minimizing the following regularized least-square loss function <span class="math display">\[L_{ridge}(y,f(X,w)) = \sum_{i=1}^N||y_i - X_iw - w_0||^2 + \alpha[||w||^2 + w_0^2]\]</span>,</p>
-<p>where <span class="math display">\[\alpha\]</span> is the hyperparameter for ridge regression. Note that the ridge regression model reduces to MLR when �=0. By increasing the value of �, we can control the complexity of the model as will be shown in the example below.</p>
+<p>where <span class="math display">\[\alpha\]</span> is the hyperparameter for ridge regression. Note that the ridge regression model reduces to MLR when <span class="math display">\[\alpha = 0\]</span>. By increasing the value of <span class="math display">\[\alpha\]</span>, we can control the complexity of the model as will be shown in the example below.</p>
 <p>In the example shown below, we fit a ridge regression model to the previously created training set with correlated attributes. We compare the results of the ridge regression model against those obtained using MLR.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to data frame</span></span>
